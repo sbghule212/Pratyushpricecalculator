@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Majalgaon Store - Calculator</title>
+  <title>Majalgaon Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
       --primary-color: #4CAF50;
       --bg-color: #f0f0f0;
       --card-bg: #ffffff;
+      box-sizing: border-box;
     }
 
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
+      margin-top: 4rem;
       background: var(--bg-color);
       padding: 20px;
       display: flex;
@@ -28,7 +30,7 @@
     }
 
     header h1 {
-      color: var(--primary-color);
+<!--       color: var(--primary-color); -->
       margin: 0;
       font-size: 2rem;
     }
@@ -41,6 +43,7 @@
     }
 
     .tab {
+      box-sizing: border-box;
       padding: 10px 20px;
       cursor: pointer;
       font-weight: bold;
@@ -57,6 +60,7 @@
     }
 
     .tab-content {
+      box-sizing: border-box;
       display: none;
       width: 100%;
       max-width: 450px;
@@ -118,18 +122,18 @@
 </header>
 
 <div class="tabs">
-  <button class="tab active" onclick="switchTab('forward')">Forward</button>
-  <button class="tab" onclick="switchTab('reverse')">Reverse</button>
+  <button class="tab active" onclick="switchTab('forward')">DP>Offer</button>
+  <button class="tab" onclick="switchTab('reverse')">Offer>DP</button>
 </div>
 
 <!-- Forward Calculator -->
 <div id="forward" class="tab-content active">
   <label for="dpPrice">Enter Dp Price:</label>
-  <input type="number" id="dpPrice" placeholder="Enter base price" oninput="calculateForward()" />
+  <input type="number" id="dpPrice" placeholder="Enter DP price" oninput="calculateForward()" />
   <div class="output">
-    <p><strong>Offline Price:</strong> <span id="offlinePrice">-</span></p>
-    <p><strong>Online Price:</strong> <span id="onlinePrice">-</span></p>
-    <p><strong>Retail Price:</strong> <span id="retailPrice">-</span></p>
+    <p><strong>Offline Distributor Price:</strong> <span id="offlinePrice">-</span></p>
+    <p><strong>PDP/Online Price:</strong> <span id="onlinePrice">-</span></p>
+    <p><strong>PCP/MRP Price:</strong> <span id="retailPrice">-</span></p>
   </div>
 </div>
 
@@ -138,6 +142,7 @@
   <label for="onlineInput">Enter Online Price:</label>
   <input type="number" id="onlineInput" placeholder="Enter online price" oninput="calculateReverse()" />
   <div class="output">
+<!--     <p><strong>Offline Distributor Price:</strong> <span id="revOffline">-</span></p> -->
     <p><strong>Approx. Dp Price:</strong> <span id="revDpPrice">-</span></p>
   </div>
 </div>
@@ -173,20 +178,30 @@
     document.getElementById("retailPrice").textContent = retailPrice;
   }
 
-function calculateReverse() {
-  const onlinePrice = parseFloat(document.getElementById("onlineInput").value);
-  if (isNaN(onlinePrice)) {
-    document.getElementById("revDpPrice").textContent = "-";
-    return;
+  function calculateReverse() {
+    const onlinePrice = parseFloat(document.getElementById("onlineInput").value);
+    if (isNaN(onlinePrice)) {
+      document.getElementById("revOffline").textContent = "-";
+      document.getElementById("revDpPrice").textContent = "-";
+      return;
+    }
+
+    const approxOffline = onlinePrice - 60;
+    const approxDpPrice = Math.round(approxOffline / 0.825);
+
+    // document.getElementById("revOffline").textContent = approxOffline;
+    document.getElementById("revDpPrice").textContent = approxDpPrice;
   }
-
-  const approxOffline = onlinePrice - 60;
-  const approxDpPrice = Math.round(approxOffline / 0.825);
-
-  document.getElementById("revDpPrice").textContent = approxDpPrice;
-}
-
 </script>
+<footer style="
+  margin-top: auto;
+  text-align: center;
+  padding: 20px 10px;
+  color: #888;
+  font-size: 0.9rem;
+">
+  Created by Majalgaon Store
+</footer>
 
 </body>
 </html>
