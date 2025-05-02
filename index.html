@@ -14,7 +14,6 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      margin-top: 3rem;
       background: var(--bg-color);
       padding: 20px;
       display: flex;
@@ -29,7 +28,7 @@
     }
 
     header h1 {
-/*       color: var(--primary-color); */
+      color: var(--primary-color);
       margin: 0;
       font-size: 2rem;
     }
@@ -50,7 +49,6 @@
       background: none;
       outline: none;
       transition: color 0.3s;
-      box-sizing: border-box;
     }
 
     .tab.active {
@@ -175,20 +173,19 @@
     document.getElementById("retailPrice").textContent = retailPrice;
   }
 
-  function calculateReverse() {
-    const onlinePrice = parseFloat(document.getElementById("onlineInput").value);
-    if (isNaN(onlinePrice)) {
-      document.getElementById("revOffline").textContent = "-";
-      document.getElementById("revDpPrice").textContent = "-";
-      return;
-    }
-
-    const approxOffline = onlinePrice - 60;
-    const approxDpPrice = Math.round(approxOffline / 0.825);
-
-    document.getElementById("revOffline").textContent = approxOffline;
-    document.getElementById("revDpPrice").textContent = approxDpPrice;
+function calculateReverse() {
+  const onlinePrice = parseFloat(document.getElementById("onlineInput").value);
+  if (isNaN(onlinePrice)) {
+    document.getElementById("revDpPrice").textContent = "-";
+    return;
   }
+
+  const approxOffline = onlinePrice - 60;
+  const approxDpPrice = Math.round(approxOffline / 0.825);
+
+  document.getElementById("revDpPrice").textContent = approxDpPrice;
+}
+
 </script>
 
 </body>
