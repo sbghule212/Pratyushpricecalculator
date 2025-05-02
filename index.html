@@ -124,6 +124,7 @@
 <div class="tabs">
   <button class="tab active" onclick="switchTab('forward')">DP>Offer</button>
   <button class="tab" onclick="switchTab('reverse')">Offer>DP</button>
+  <button class="tab" onclick="switchTab('bulk')">Bulk</button>
 </div>
 
 <!-- Forward Calculator -->
@@ -131,7 +132,7 @@
   <label for="dpPrice">Enter Dp Price:</label>
   <input type="number" id="dpPrice" placeholder="Enter DP price" oninput="calculateForward()" />
   <div class="output">
-    <p><strong>Offline Distributor Price:</strong> <span id="offlinePrice">-</span></p>
+    <p><strong>ODP/Offline Price:</strong> <span id="offlinePrice">-</span></p>
     <p><strong>PDP/Online Price:</strong> <span id="onlinePrice">-</span></p>
     <p><strong>PCP/MRP Price:</strong> <span id="retailPrice">-</span></p>
   </div>
@@ -146,6 +147,14 @@
     <p><strong>Approx. Dp Price:</strong> <span id="revDpPrice">-</span></p>
   </div>
 </div>
+
+  <!-- Bulk Calculator -->
+<div id="bulk" class="tab-content">
+  <label for="bulkInput">Enter multiple DP prices (comma or new line separated):</label>
+  <textarea id="bulkInput" placeholder="Eg: 1000, 1200, 1350" rows="5" oninput="calculateBulk()" style="width:100%; padding:10px; border-radius:8px; font-size:16px; border:1px solid #ccc; margin-bottom:20px;"></textarea>
+  <div class="output" id="bulkOutput"></div>
+</div>
+
 
 <script>
   function switchTab(tabId) {
@@ -192,6 +201,84 @@
     // document.getElementById("revOffline").textContent = approxOffline;
     document.getElementById("revDpPrice").textContent = approxDpPrice;
   }
+  
+  // Bulk Calculator JavaScript
+function calculateBulk() {
+  const input = document.getElementById("bulkInput").value;
+  const lines = input
+    .split(/[\n,]+/)
+    .map(v => parseFloat(v.trim()))
+    .filter(v => !isNaN(v));
+
+  let html = "";
+
+  lines.forEach((dp, index) => {
+    const base = dp * 0.75;
+    const offline = Math.round(base + base * 0.1);
+    const online = offline + 60;
+    const retail = online + 40;
+
+    html += `<p><strong>Entry ${index + 1}:</strong> DP: ₹${dp}, Offline: ₹${offline}, Online: ₹${online}, Retail: ₹${retail}</p>`;
+  });
+
+  document.getElementById("bulkOutput").innerHTML = html || "<p>No valid entries.</p>";
+}
+
+// JavaScript for Invoice
+function calculateBulk() {
+  const input = document.getElementById("bulkInput").value;
+  const lines = input
+    .split(/[\n,]+/)
+    .map(v => parseFloat(v.trim()))
+    .filter(v => !isNaN(v));
+
+  if (lines.length === 0) {
+    document.getElementById("bulkOutput").innerHTML = "<p>No valid entries.</p>";
+    document.getElementById("printBtn").style.display = "none";
+    return;
+  }
+
+  let html = `<table style="width:100%; border-collapse:collapse;">
+    <thead>
+      <tr style="background:#f0f0f0;">
+        <th style="border:1px solid #ccc; padding:8px;">#</th>
+        <th style="border:1px solid #ccc; padding:8px;">DP Price</th>
+        <th style="border:1px solid #ccc; padding:8px;">Offline</th>
+        <th style="border:1px solid #ccc; padding:8px;">Online</th>
+        <th style="border:1px solid #ccc; padding:8px;">MRP</th>
+      </tr>
+    </thead>
+    <tbody>`;
+
+  let totalRetail = 0;
+
+  lines.forEach((dp, index) => {
+    const base = dp * 0.75;
+    const offline = Math.round(base + base * 0.1);
+    const online = offline + 60;
+    const retail = online + 40;
+    totalRetail += retail;
+
+    html += `<tr>
+      <td style="border:1px solid #ccc; padding:8px;">${index + 1}</td>
+      <td style="border:1px solid #ccc; padding:8px;">₹${dp}</td>
+      <td style="border:1px solid #ccc; padding:8px;">₹${offline}</td>
+      <td style="border:1px solid #ccc; padding:8px;">₹${online}</td>
+      <td style="border:1px solid #ccc; padding:8px;">₹${retail}</td>
+    </tr>`;
+  });
+
+  // Add total row
+  html += `<tr style="font-weight:bold; background:#e0ffe0;">
+    <td colspan="4" style="border:1px solid #ccc; padding:8px; text-align:right;">Total Amount (MRP)</td>
+    <td style="border:1px solid #ccc; padding:8px;">₹${totalRetail}</td>
+  </tr>`;
+
+  html += "</tbody></table>";
+  document.getElementById("bulkOutput").innerHTML = html;
+  document.getElementById("printBtn").style.display = "block";
+}
+
 </script>
 <footer style="
 /*   margin-top: auto; */
