@@ -15,8 +15,11 @@
       font-family: 'Segoe UI', sans-serif;
       background: var(--bg-color);
       margin: 0;
-      padding: 20px;
+      padding: 1rem;
+      box-sizing: border-box;
       display: flex;
+      justify-content: center;
+      align-self: center;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
@@ -113,21 +116,17 @@
 
   <header>
     <h1>Majalgaon Store</h1>
-    <h2>Reverse Calculator</h2>
   </header>
-
+<div class="nav">
+    <p><a href="index.html">Go to Forward Calculator</a></p>
+  </div>
   <div class="calculator">
     <label for="onlineInput">Enter Online Price:</label>
     <input type="number" id="onlineInput" placeholder="Enter online price" oninput="calculateReverse()" />
 
     <div class="output">
-      <p><strong>Approx. Offline Price:</strong> <span id="revOffline">-</span></p>
       <p><strong>Approx. Dp Price:</strong> <span id="revDpPrice">-</span></p>
     </div>
-  </div>
-
-  <div class="nav">
-    <p>Want to calculate forward? <a href="index.html">Go to Forward Calculator</a></p>
   </div>
 
   <script>
