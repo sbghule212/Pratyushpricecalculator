@@ -5,14 +5,21 @@
   <title>Majalgaon Store - Reverse Calculator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    :root {
+      --primary-color: #4CAF50;
+      --bg-color: #f0f0f0;
+      --card-bg: #ffffff;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
       margin: 0;
       padding: 20px;
-      background: #f0f0f0;
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
     }
 
     header {
@@ -20,38 +27,51 @@
       margin-bottom: 30px;
     }
 
-    h1 {
-      color: #4CAF50;
+    header h1 {
+      color: var(--primary-color);
       margin: 0;
+      font-size: 2rem;
+    }
+
+    header h2 {
+      font-size: 1.2rem;
+      color: #555;
+      margin-top: 8px;
     }
 
     .calculator {
-      background: white;
-      padding: 30px;
+      background: var(--card-bg);
+      padding: 25px;
       border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      max-width: 450px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
       width: 100%;
+      max-width: 450px;
+      box-sizing: border-box;
     }
 
     label {
       font-weight: 600;
       display: block;
-      margin: 10px 0 5px;
+      margin-bottom: 6px;
     }
 
     input {
       width: 100%;
       padding: 12px;
       font-size: 16px;
-      border-radius: 8px;
       border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 20px;
       box-sizing: border-box;
     }
 
     .output p {
       font-size: 18px;
-      margin: 10px 0;
+      margin: 12px 0;
+    }
+
+    .output span {
+      font-weight: bold;
     }
 
     .nav {
@@ -60,49 +80,72 @@
     }
 
     .nav a {
-      color: #4CAF50;
+      color: var(--primary-color);
       text-decoration: none;
       font-weight: bold;
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      header h2 {
+        font-size: 1rem;
+      }
+
+      .calculator {
+        padding: 20px;
+        border-radius: 12px;
+      }
+
+      input {
+        font-size: 15px;
+      }
+
+      .output p {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Majalgaon Store</h1>
-  <h2>Reverse Calculator</h2>
-</header>
+  <header>
+    <h1>Majalgaon Store</h1>
+    <h2>Reverse Calculator</h2>
+  </header>
 
-<div class="calculator">
-  <label for="onlineInput">Enter Online Price:</label>
-  <input type="number" id="onlineInput" placeholder="Enter online price" oninput="calculateReverse()" />
+  <div class="calculator">
+    <label for="onlineInput">Enter Online Price:</label>
+    <input type="number" id="onlineInput" placeholder="Enter online price" oninput="calculateReverse()" />
 
-  <div class="output">
-    <p><strong>Approx. Offline Price:</strong> <span id="revOffline">-</span></p>
-    <p><strong>Approx. Dp Price:</strong> <span id="revDpPrice">-</span></p>
+    <div class="output">
+      <p><strong>Approx. Offline Price:</strong> <span id="revOffline">-</span></p>
+      <p><strong>Approx. Dp Price:</strong> <span id="revDpPrice">-</span></p>
+    </div>
   </div>
-</div>
 
-<div class="nav">
-  <p>Want to calculate forward? <a href="index.html">Go to Forward Calculator</a></p>
-</div>
+  <div class="nav">
+    <p>Want to calculate forward? <a href="index.html">Go to Forward Calculator</a></p>
+  </div>
 
-<script>
-  function calculateReverse() {
-    const onlinePrice = parseFloat(document.getElementById("onlineInput").value);
-    if (isNaN(onlinePrice)) {
-      document.getElementById("revOffline").textContent = "-";
-      document.getElementById("revDpPrice").textContent = "-";
-      return;
+  <script>
+    function calculateReverse() {
+      const onlinePrice = parseFloat(document.getElementById("onlineInput").value);
+      if (isNaN(onlinePrice)) {
+        document.getElementById("revOffline").textContent = "-";
+        document.getElementById("revDpPrice").textContent = "-";
+        return;
+      }
+
+      const approxOffline = onlinePrice - 60;
+      const approxDpPrice = Math.round(approxOffline / 0.825);
+
+      document.getElementById("revOffline").textContent = approxOffline;
+      document.getElementById("revDpPrice").textContent = approxDpPrice;
     }
-
-    const approxOffline = onlinePrice - 60;
-    const approxDpPrice = Math.round(approxOffline / 0.825);
-
-    document.getElementById("revOffline").textContent = approxOffline;
-    document.getElementById("revDpPrice").textContent = approxDpPrice;
-  }
-</script>
+  </script>
 
 </body>
 </html>
