@@ -12,9 +12,8 @@
     }
 
     body {
-      box-sizing: border-box;
       font-family: 'Segoe UI', sans-serif;
-      margin-top:3rem;
+      margin: 0;
       background: var(--bg-color);
       padding: 20px;
       display: flex;
@@ -29,7 +28,7 @@
     }
 
     header h1 {
-/*       color: var(--primary-color); */
+      color: var(--primary-color);
       margin: 0;
       font-size: 2rem;
     }
@@ -65,7 +64,6 @@
       padding: 25px;
       border-radius: 16px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-      box-sizing: border-box;
     }
 
     .tab-content.active {
@@ -127,19 +125,20 @@
 <!-- Forward Calculator -->
 <div id="forward" class="tab-content active">
   <label for="dpPrice">Enter Dp Price:</label>
-  <input type="number" id="dpPrice" placeholder="Enter DP price" oninput="calculateForward()" />
+  <input type="number" id="dpPrice" placeholder="Enter base price" oninput="calculateForward()" />
   <div class="output">
-    <p><strong>Offline Distributor Price:</strong> <span id="offlinePrice">-</span></p>
-    <p><strong>PDP/Online Price:</strong> <span id="onlinePrice">-</span></p>
-    <p><strong>PCP/MRP Price:</strong> <span id="retailPrice">-</span></p>
+    <p><strong>Offline Price:</strong> <span id="offlinePrice">-</span></p>
+    <p><strong>Online Price:</strong> <span id="onlinePrice">-</span></p>
+    <p><strong>Retail Price:</strong> <span id="retailPrice">-</span></p>
   </div>
 </div>
 
 <!-- Reverse Calculator -->
 <div id="reverse" class="tab-content">
-  <label for="onlineInput">Enter PDP/Online Price:</label>
+  <label for="onlineInput">Enter Online Price:</label>
   <input type="number" id="onlineInput" placeholder="Enter online price" oninput="calculateReverse()" />
   <div class="output">
+    <p><strong>Approx. Offline Price:</strong> <span id="revOffline">-</span></p>
     <p><strong>Approx. Dp Price:</strong> <span id="revDpPrice">-</span></p>
   </div>
 </div>
