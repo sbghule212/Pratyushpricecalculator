@@ -245,12 +245,15 @@ function calculateBulk() {
         <th style="border:1px solid #ccc; padding:8px;">DP Price</th>
         <th style="border:1px solid #ccc; padding:8px;">Offline</th>
         <th style="border:1px solid #ccc; padding:8px;">Online</th>
-        <th style="border:1px solid #ccc; padding:8px;">MRP</th>
+        <th style="border:1px solid #ccc; padding:8px;">Retail</th>
       </tr>
     </thead>
     <tbody>`;
 
   let totalRetail = 0;
+  let totalDp = 0;
+  let totalOffline = 0;
+  let totalOnline = 0;
 
   lines.forEach((dp, index) => {
     const base = dp * 0.75;
@@ -258,6 +261,9 @@ function calculateBulk() {
     const online = offline + 60;
     const retail = online + 40;
     totalRetail += retail;
+    totalDp += dp;
+    totalOffline += offline;
+    totalOnline += online;
 
     html += `<tr>
       <td style="border:1px solid #ccc; padding:8px;">${index + 1}</td>
@@ -270,7 +276,10 @@ function calculateBulk() {
 
   // Add total row
   html += `<tr style="font-weight:bold; background:#e0ffe0;">
-    <td colspan="4" style="border:1px solid #ccc; padding:8px; text-align:right;">Total Amount (MRP)</td>
+  <td style="border:1px solid #ccc; padding:8px;">-</td>
+    <td style="border:1px solid #ccc; padding:8px;">₹${totalDp}</td>
+    <td style="border:1px solid #ccc; padding:8px;">₹${totalOffline}</td>
+    <td style="border:1px solid #ccc; padding:8px;">₹${totalOnline}</td>
     <td style="border:1px solid #ccc; padding:8px;">₹${totalRetail}</td>
   </tr>`;
 
