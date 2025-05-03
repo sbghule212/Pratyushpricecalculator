@@ -204,90 +204,90 @@ function calculateReverse() {
   }
   
   // Bulk Calculator JavaScript
-function calculateBulk() {
-  const input = document.getElementById("bulkInput").value;
-  const lines = input
-    .split(/[\n,]+/)
-    .map(v => parseFloat(v.trim()))
-    .filter(v => !isNaN(v));
+// function calculateBulk() {
+//   const input = document.getElementById("bulkInput").value;
+//   const lines = input
+//     .split(/[\n,]+/)
+//     .map(v => parseFloat(v.trim()))
+//     .filter(v => !isNaN(v));
 
-  let html = "";
+//   let html = "";
 
-  lines.forEach((dp, index) => {
-    const base = dp * 0.75;
-    const offline = Math.round(base + base * 0.1);
-    const online = offline + 60;
-    const retail = online + 40;
+//   lines.forEach((dp, index) => {
+//     const base = dp * 0.75;
+//     const offline = Math.round(base + base * 0.1);
+//     const online = offline + 60;
+//     const retail = online + 40;
 
-    html += `<p><strong>Entry ${index + 1}:</strong> DP: ₹${dp}, Offline: ₹${offline}, Online: ₹${online}, Retail: ₹${retail}</p>`;
-  });
+//     html += `<p><strong>Entry ${index + 1}:</strong> DP: ₹${dp}, Offline: ₹${offline}, Online: ₹${online}, Retail: ₹${retail}</p>`;
+//   });
 
-  document.getElementById("bulkOutput").innerHTML = html || "<p>No valid entries.</p>";
-}
+//   document.getElementById("bulkOutput").innerHTML = html || "<p>No valid entries.</p>";
+// }
 
 // JavaScript for Invoice
-function calculateBulk() {
-  const input = document.getElementById("bulkInput").value;
-  const lines = input
-    .split(/[\n,]+/)
-    .map(v => parseFloat(v.trim()))
-    .filter(v => !isNaN(v));
+// function calculateBulk() {
+//   const input = document.getElementById("bulkInput").value;
+//   const lines = input
+//     .split(/[\n,]+/)
+//     .map(v => parseFloat(v.trim()))
+//     .filter(v => !isNaN(v));
 
-  if (lines.length === 0) {
-    document.getElementById("bulkOutput").innerHTML = "<p>No valid entries.</p>";
-    document.getElementById("printBtn").style.display = "none";
-    return;
-  }
+//   if (lines.length === 0) {
+//     document.getElementById("bulkOutput").innerHTML = "<p>No valid entries.</p>";
+//     document.getElementById("printBtn").style.display = "none";
+//     return;
+//   }
 
-  let html = `<table style="width:100%; border-collapse:collapse;">
-    <thead>
-      <tr style="background:#f0f0f0;">
-        <th style="border:1px solid #ccc; padding:8px;">#</th>
-        <th style="border:1px solid #ccc; padding:8px;">DP Price</th>
-        <th style="border:1px solid #ccc; padding:8px;">Offline</th>
-        <th style="border:1px solid #ccc; padding:8px;">Online</th>
-        <th style="border:1px solid #ccc; padding:8px;">MRP</th>
-      </tr>
-    </thead>
-    <tbody>`;
+//   let html = `<table style="width:100%; border-collapse:collapse;">
+//     <thead>
+//       <tr style="background:#f0f0f0;">
+//         <th style="border:1px solid #ccc; padding:8px;">#</th>
+//         <th style="border:1px solid #ccc; padding:8px;">DP Price</th>
+//         <th style="border:1px solid #ccc; padding:8px;">Offline</th>
+//         <th style="border:1px solid #ccc; padding:8px;">Online</th>
+//         <th style="border:1px solid #ccc; padding:8px;">MRP</th>
+//       </tr>
+//     </thead>
+//     <tbody>`;
 
-  let totalRetail = 0;
-  let totalDp = 0;
-  let totalOffline = 0;
-  let totalOnline = 0;
+//   let totalRetail = 0;
+//   let totalDp = 0;
+//   let totalOffline = 0;
+//   let totalOnline = 0;
 
-  lines.forEach((dp, index) => {
-    const base = dp * 0.75;
-    const offline = Math.round(base + base * 0.1);
-    const online = offline + 60;
-    const retail = online + 40;
-    totalRetail += retail;
-    totalDp += dp;
-    totalOffline += offline;
-    totalOnline += online;
+//   lines.forEach((dp, index) => {
+//     const base = dp * 0.75;
+//     const offline = Math.round(base + base * 0.1);
+//     const online = offline + 60;
+//     const retail = online + 40;
+//     totalRetail += retail;
+//     totalDp += dp;
+//     totalOffline += offline;
+//     totalOnline += online;
 
-    html += `<tr>
-      <td style="border:1px solid #ccc; padding:8px;">${index + 1}</td>
-      <td style="border:1px solid #ccc; padding:8px;">₹${dp}</td>
-      <td style="border:1px solid #ccc; padding:8px;">₹${offline}</td>
-      <td style="border:1px solid #ccc; padding:8px;">₹${online}</td>
-      <td style="border:1px solid #ccc; padding:8px;">₹${retail}</td>
-    </tr>`;
-  });
+//     html += `<tr>
+//       <td style="border:1px solid #ccc; padding:8px;">${index + 1}</td>
+//       <td style="border:1px solid #ccc; padding:8px;">₹${dp}</td>
+//       <td style="border:1px solid #ccc; padding:8px;">₹${offline}</td>
+//       <td style="border:1px solid #ccc; padding:8px;">₹${online}</td>
+//       <td style="border:1px solid #ccc; padding:8px;">₹${retail}</td>
+//     </tr>`;
+//   });
 
   // Add total row
-  html += `<tr style="font-weight:bold; background:#e0ffe0;">
-  <td style="border:1px solid #ccc; padding:8px;">-</td>
-    <td style="border:1px solid #ccc; padding:8px;">₹${totalDp}</td>
-    <td style="border:1px solid #ccc; padding:8px;">₹${totalOffline}</td>
-    <td style="border:1px solid #ccc; padding:8px;">₹${totalOnline}</td>
-    <td style="border:1px solid #ccc; padding:8px;">₹${totalRetail}</td>
-  </tr>`;
+//   html += `<tr style="font-weight:bold; background:#e0ffe0;">
+//   <td style="border:1px solid #ccc; padding:8px;">-</td>
+//     <td style="border:1px solid #ccc; padding:8px;">₹${totalDp}</td>
+//     <td style="border:1px solid #ccc; padding:8px;">₹${totalOffline}</td>
+//     <td style="border:1px solid #ccc; padding:8px;">₹${totalOnline}</td>
+//     <td style="border:1px solid #ccc; padding:8px;">₹${totalRetail}</td>
+//   </tr>`;
 
-  html += "</tbody></table>";
-  document.getElementById("bulkOutput").innerHTML = html;
-  document.getElementById("printBtn").style.display = "block";
-}
+//   html += "</tbody></table>";
+//   document.getElementById("bulkOutput").innerHTML = html;
+//   document.getElementById("printBtn").style.display = "block";
+// }
 
 </script>
 <footer style="
