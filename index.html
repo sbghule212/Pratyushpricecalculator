@@ -10,8 +10,8 @@
       --bg-color: #f0f0f0;
       --card-bg: #ffffff;
       --main-bg: hsl(217, 54%, 11%);
-  --card-bg: hsl(216, 50%, 16%);
-  --White: hsl(0, 0%, 100%);
+      --card-bg: hsl(216, 50%, 16%);
+      --White: hsl(0, 0%, 100%);
       box-sizing: border-box;
     }
 
@@ -25,7 +25,7 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      color: var(--White);
+      color: var(--White)
     }
 
     header {
@@ -92,8 +92,11 @@
       margin-bottom: 20px;
       box-sizing: border-box;
       background-color: var(--card-bg);
-      color: var(--White)
+      color: var(--white);
     }
+input[type="number]:focus {
+border: 3px solid var(--card-bg);
+}
 
     .output p {
       font-size: 18px;
@@ -140,6 +143,7 @@
     <p><strong>ODP/Offline Price:</strong> <span id="offlinePrice">-</span></p>
     <p><strong>PDP/Online Price:</strong> <span id="onlinePrice">-</span></p>
     <p><strong>PCP/MRP Price:</strong> <span id="retailPrice">-</span></p>
+    <p><strong>MSP:</strong> <span id="mspPrice">-</span></p>
   </div>
 </div>
 
@@ -179,6 +183,7 @@
       document.getElementById("offlinePrice").textContent = "-";
       document.getElementById("onlinePrice").textContent = "-";
       document.getElementById("retailPrice").textContent = "-";
+      document.getElementById("mspPrice").textContent = "-";
       return;
     }
 
@@ -186,10 +191,12 @@
     const offlinePrice = Math.round(base + base * 0.10);
     const onlinePrice = offlinePrice + 60;
     const retailPrice = onlinePrice + 40;
+    const mspPrice = Math.round(base);
 
     document.getElementById("offlinePrice").textContent = offlinePrice;
     document.getElementById("onlinePrice").textContent = onlinePrice;
     document.getElementById("retailPrice").textContent = retailPrice;
+    document.getElementById("mspPrice").textContent = mspPrice;
   }
 
 function calculateReverse() {
@@ -296,7 +303,7 @@ function calculateReverse() {
 
 </script>
 <footer style="
-/*   margin-top: auto; */
+  margin-top: auto;
   text-align: center;
   padding: 20px 10px;
   color: #888;
