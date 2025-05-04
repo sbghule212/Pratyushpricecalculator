@@ -160,13 +160,13 @@ border: 3px solid var(--card-bg);
 <!-- Message Generator -->
 <div id="message" class="tab-content">
   <label for="storeInput">Mega Store Name:</label>
-<input type="text" id="storeInput" value="Majalgaon Mega Store 🏪" placeholder="Majalgaon Mega Store 🏪" oninput="generateMessage()">
+<input type="text" id="storeInput" value="Majalgaon Mega Store" placeholder="Majalgaon Mega Store 🏪" oninput="generateMessage()">
 
 <label for="productInput">Product Name:</label>
 <input type="text" id="productInput" value="Jewellery" placeholder="Jewellery" oninput="generateMessage()">
 
 <label for="dpInput">DP Price:</label>
-<input type="number" id="dpInput" value="884" placeholder="884" oninput="generateMessage()">
+<input type="number" id="dpInput" placeholder="884" oninput="generateMessage()">
 
 <label for="contactInput">Contact Number:</label>
 <input type="text" id="contactInput" value="7775034111" placeholder="7775034111" oninput="generateMessage()">
@@ -241,7 +241,7 @@ function generateMessage() {
   const offline = Math.round(base + base * 0.1);
   const online = offline + 60;
 
-  const message = `PRATYUSH RETAILS PVT LTD.\n${store}🏪\n\nName - ${product}\n\nPratyush Distributor Price - ₹${dp}/-\nOnline Price - ₹${online}/-\n\n🔥 FREE SHIPPING🔥\nPremium Quality 100%\n▶ No Cash On Delivery\n▶ No Cancellation Process\n▶ Payment Process \nPhone Pay / Google Pay / Paytm\n▶ When parcel received opening video is Compulsory\n\nBooking Only What's app\n${contact}`;
+  const message = `PRATYUSH RETAILS PVT LTD.\n${store}🏪\n\nName - ${product}\n\nPratyush Distributor Price - ₹${online}/-\n\n🔥 FREE SHIPPING🔥\nPremium Quality 100%\n▶ No Cash On Delivery\n▶ No Cancellation Process\n▶ Payment Process \nPhone Pay / Google Pay / Paytm\n▶ When parcel received opening video is Compulsory\n\nBooking Only What's app\n${contact}📲`;
 
   document.getElementById("messageOutput").value = message;
 }
