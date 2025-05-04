@@ -160,7 +160,7 @@ border: 3px solid var(--card-bg);
 <!-- Message Generator -->
 <div id="message" class="tab-content">
   <label for="storeInput">Mega Store Name:</label>
-<input type="text" id="storeInput"placeholder="Majalgaon Mega Store 🏪" oninput="generateMessage()">
+<input type="text" id="storeInput"placeholder="Majalgaon Mega Store" oninput="generateMessage()">
 
 <label for="productInput">Product Name:</label>
 <input type="text" id="productInput" placeholder="Jewellery" oninput="generateMessage()">
@@ -171,12 +171,19 @@ border: 3px solid var(--card-bg);
 <label for="contactInput">Contact Number:</label>
 <input type="text" id="contactInput" placeholder="7775034111" oninput="generateMessage()">
 
-  <label>Generated WhatsApp Message:</label>
-  <textarea id="messageOutput" rows="10" readonly style="width:100%; padding:10px; font-size:16px; border-radius:8px; border:1px solid #ccc;"></textarea>
-
-  <button onclick="copyMessage()" style="margin-top:10px; padding:10px 20px; background:#007BFF; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer;">
-    Copy Message
+<div style="margin-top:0px;">
+  <label>Distributor Post:</label>
+  <textarea id="messageOutput1" rows="10" readonly style="width:93%; background:var(--card-bg); color:var(--white); padding:10px; font-size:16px; border-radius:8px; border:1px solid #ccc;"></textarea>
+  <button onclick="copyMessage('messageOutput1')" style="margin-top:10px; padding:10px 20px; background:var(--main-bg); color:var(--white); border:none; border-radius:8px; font-size:16px; cursor:pointer;">
+    Copy Distributor Post
   </button>
+
+  <label style="margin-top:20px; display:block;">Customer Post:</label>
+  <textarea id="messageOutput2" rows="1" readonly style="width:93%; background:var(--card-bg); color:var(--white); padding:10px; font-size:16px; border-radius:8px; border:1px solid #ccc;"></textarea>
+  <button onclick="copyMessage('messageOutput2')" style="margin-top:10px; padding:10px 20px; background:var(--main-bg); color:var(--white); border:none; border-radius:8px; font-size:16px; cursor:pointer;">
+    Copy Customer Post
+  </button>
+</div>
 </div>
 
 
@@ -236,19 +243,21 @@ function generateMessage() {
   const dp = parseFloat(document.getElementById("dpInput").value) || 0;
   const contact = document.getElementById("contactInput").value || "7775034111";
 
-  // Calculate Online Price
   const base = dp * 0.75;
   const offline = Math.round(base + base * 0.1);
   const online = offline + 60;
+  const retail = online + 40;
 
-  const message = `PRATYUSH RETAILS PVT LTD.\n${store}🏪\n\nName - ${product}\n\nPratyush Distributor Price - ₹${online}/-\n\n🔥 FREE SHIPPING🔥\nPremium Quality 100%\n▶ No Cash On Delivery\n▶ No Cancellation Process\n▶ Payment Process \nPhone Pay / Google Pay / Paytm\n▶ When parcel received opening video is Compulsory\n\nBooking Only What's app\n${contact}📲`;
+  const distributorMsg = `PRATYUSH RETAILS PVT LTD.\n${store}🏪\n\nName - ${product}\n\nPratyush Distributor Price - ₹${online}/-\n\n🔥 FREE SHIPPING🔥\nPremium Quality 100%\n▶ No Cash On Delivery\n▶ No Cancellation Process\n▶ Payment Process \nPhone Pay / Google Pay / Paytm\n▶ When parcel received opening video is Compulsory\n\nBooking Only What's app\n${contact}📲`;
 
-  document.getElementById("messageOutput").value = message;
+  const customerMsg = `Pratyush Customer Price: ₹${retail}/-`;
+
+  document.getElementById("messageOutput1").value = distributorMsg;
+  document.getElementById("messageOutput2").value = customerMsg;
 }
 
-
-function copyMessage() {
-  const textarea = document.getElementById("messageOutput");
+function copyMessage(id) {
+  const textarea = document.getElementById(id);
   textarea.select();
   textarea.setSelectionRange(0, 99999);
   document.execCommand("copy");
