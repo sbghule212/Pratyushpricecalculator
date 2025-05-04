@@ -184,6 +184,20 @@ border: 3px solid var(--card-bg);
     Copy Customer Post
   </button>
 </div>
+  <label style="margin-top:25px; display:block;">Sale Report:</label>
+  <label>Saree Sale:</label>
+<input type="number" id="sareeSaleInput" oninput="generateMessage()">
+
+<label>Jewellery/Purse Sale:</label>
+<input type="number" id="otherSaleInput" oninput="generateMessage()">
+
+<label>Today’s Expenses:</label>
+<input type="number" id="expensesInput" oninput="generateMessage()">
+
+<textarea id="messageOutput3" rows="9" readonly style="width:93%; padding:10px; background:var(--card-bg); color:var(--white); font-size:16px; border-radius:8px; border:1px solid #ccc;"></textarea>
+<button onclick="copyMessage('messageOutput3')" style="margin-top:10px; padding:10px 20px; background:var(--main-bg); color:var(--white); border:none; border-radius:8px; font-size:16px; cursor:pointer;">
+  Copy Sale Report
+</button>
 </div>
 
 
@@ -238,7 +252,7 @@ function calculateReverse() {
   }
   
 function generateMessage() {
-  const store = document.getElementById("storeInput").value || "Majalgaon Mega Store 🏪";
+  const store = document.getElementById("storeInput").value || "Majalgaon Mega Store";
   const product = document.getElementById("productInput").value || "Jewellery";
   const dp = parseFloat(document.getElementById("dpInput").value) || 0;
   const contact = document.getElementById("contactInput").value || "7775034111";
@@ -251,9 +265,30 @@ function generateMessage() {
   const distributorMsg = `PRATYUSH RETAILS PVT LTD.\n${store}🏪\n\nName - ${product}\n\nPratyush Distributor Price - ₹${online}/-\n\n🔥 FREE SHIPPING🔥\nPremium Quality 100%\n▶ No Cash On Delivery\n▶ No Cancellation Process\n▶ Payment Process \nPhone Pay / Google Pay / Paytm\n▶ When parcel received opening video is Compulsory\n\nBooking Only What's app\n${contact}📲`;
 
   const customerMsg = `Pratyush Customer Price: ₹${retail}/-`;
+  
+  const today = new Date();
+const dateStr = today.toLocaleDateString('en-GB', {
+  day: '2-digit', month: 'short', year: 'numeric'
+});
+const timeStr = today.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-  document.getElementById("messageOutput1").value = distributorMsg;
+// Get user input values
+const sareeSale = parseInt(document.getElementById("sareeSaleInput").value) || 0;
+const otherSale = parseInt(document.getElementById("otherSaleInput").value) || 0;
+const expenses = parseInt(document.getElementById("expensesInput").value) || 0;
+
+const totalSale = sareeSale + otherSale;
+const profit = Math.floor(totalSale * 0.10);
+
+// const store = document.getElementById("storeInput").value || 0;
+
+const reportMsg = `*${store.toUpperCase()}🏪*\n\n${dateStr} ⏰\n\n1. Saree Sale - ${sareeSale}\n2. Jwellery,Purse Sale - ${otherSale}\n\n*Total Sale =   ${totalSale}*\n\nToday Expenses = ${expenses}\nToday 10% Profit = ${profit}`;
+
+   document.getElementById("messageOutput1").value = distributorMsg;
   document.getElementById("messageOutput2").value = customerMsg;
+document.getElementById("messageOutput3").value = reportMsg;
+
+
 }
 
 function copyMessage(id) {
