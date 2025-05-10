@@ -244,8 +244,8 @@ function calculateReverse() {
     }
 
     const approxOffline = onlinePrice - 60;
-    const approxRetail = onlinePrice + 40;
-    const approxDpPrice = Math.round(approxOffline / 0.825);
+    const approxRetail = offlinePrice + 100;
+    const approxDpPrice = Math.round(onlinePrice / 0.9);
 
     document.getElementById("revRetail").textContent = approxRetail;
     document.getElementById("revDpPrice").textContent = approxDpPrice;
@@ -259,8 +259,8 @@ function generateMessage() {
 
   const base = dp * 0.75;
   const offline = Math.round(base + base * 0.1);
-  const online = offline + 60;
-  const retail = online + 40;
+  const online = Math.round(dpPrice * 0.9);
+  const retail = offline + 100;
 
   const distributorMsg = `PRATYUSH RETAILS PVT LTD.\n${store}🏪\n\nName - ${product}\n\nPratyush Distributor Price - ₹${online}/-\n\n🔥 FREE SHIPPING🔥\nPremium Quality 100%\n▶ No Cash On Delivery\n▶ No Cancellation Process\n▶ Payment Process \nPhone Pay / Google Pay / Paytm\n▶ When parcel received opening video is Compulsory\n\nBooking Only What's app\n${contact}📲`;
 
