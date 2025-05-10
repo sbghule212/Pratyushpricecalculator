@@ -152,7 +152,7 @@ border: 3px solid var(--card-bg);
   <label for="onlineInput">Enter Online Price:</label>
   <input type="number" id="onlineInput" placeholder="Enter online price" oninput="calculateReverse()" />
   <div class="output">
- <!--   <p><strong>Approx. MRP Price:</strong> <span id="revRetail">-</span></p> -->
+ <p><strong>Approx. DP Price:</strong> <span id="revRetail">-</span></p>
     <p><strong>Approx. Dp Price:</strong> <span id="revDpPrice">-</span></p>
   </div>
 </div>
@@ -244,11 +244,11 @@ function calculateReverse() {
     }
 
   //  const base = approxDpPrice * 0.75;
-  //  const offlinePrice = Math.round(base + base * 0.10);
- //   const approxRetail = OfflinePrice + 100;
+    const offlinePrice = OnlinePrice - 60;
+    const approxRetail = Math.round(OfflinePrice / 0.825);
     const approxDpPrice = Math.round(onlinePrice / 0.9);
 
-   // document.getElementById("revRetail").textContent = approxRetail;
+   document.getElementById("revRetail").textContent = approxRetail;
     document.getElementById("revDpPrice").textContent = approxDpPrice;
   }
   
@@ -263,7 +263,7 @@ function generateMessage() {
   const online = Math.round(dp * 0.9);
   const retail = offline + 100;
 
-  const distributorMsg = `PRATYUSH RETAILS PVT LTD.\n${store}🏪\n\nName - ${product}\n\nPratyush Distributor Price - ₹${online}/-\n\n🔥 FREE SHIPPING🔥\nPremium Quality 100%\n▶ No Cash On Delivery\n▶ No Cancellation Process\n▶ Payment Process \nPhone Pay / Google Pay / Paytm\n▶ When parcel received opening video is Compulsory\n\nBooking Only What's app\n${contact}📲`;
+  const distributorMsg = `PRATYUSH RETAILS PVT LTD.\n${store}🏪\n\nName - ${product}\n\nDp Price - #${dp}/-\n\nPratyush Distributor Price - ₹${online}/-\n\n🔥 FREE SHIPPING🔥\nPremium Quality 100%\n▶ No Cash On Delivery\n▶ No Cancellation Process\n▶ Payment Process \nPhone Pay / Google Pay / Paytm\n▶ When parcel received opening video is Compulsory\n\nBooking Only What's app\n${contact}📲`;
 
   const customerMsg = `Pratyush Customer Price: ₹${retail}/-`;
   
