@@ -243,11 +243,7 @@ function calculateReverse() {
       return;
     }
 
-  const base = dpPrice * 0.75;
-    const offlinePrice = Math.round(base + base * 0.10);
-    const onlinePrice = Math.round(dpPrice * 0.9);
-    const retailPrice = offlinePrice + 100;
-  const approxOffline = onlinePrice - 60;
+    const approxOffline = onlinePrice - 60;
     const approxRetail = retailPrice;
     const approxDpPrice = Math.round(onlinePrice / 0.9);
 
