@@ -225,8 +225,8 @@ border: 3px solid var(--card-bg);
 
     const base = dpPrice * 0.75;
     const offlinePrice = Math.round(base + base * 0.10);
-    const onlinePrice = dpPrice * 0.9;
-    const retailPrice = onlinePrice + 40;
+    const onlinePrice = Math.round(dpPrice * 0.9);
+    const retailPrice = offlinePrice + 100;
     const mspPrice = Math.round(base);
 
     document.getElementById("offlinePrice").textContent = offlinePrice;
