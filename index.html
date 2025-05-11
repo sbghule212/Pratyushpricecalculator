@@ -201,6 +201,11 @@ border: 3px solid var(--card-bg);
 
 
 <script>
+      const base = dpPrice * 0.75;
+    const offlinePrice = Math.round(base + base * 0.10);
+    const onlinePrice = Math.round(dpPrice * 0.9);
+    const retailPrice = offlinePrice + 100;
+    const mspPrice = Math.round(base);
   function switchTab(tabId) {
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.tab-content');
@@ -221,12 +226,6 @@ border: 3px solid var(--card-bg);
       document.getElementById("mspPrice").textContent = "-";
       return;
     }
-
-    const base = dpPrice * 0.75;
-    const offlinePrice = Math.round(base + base * 0.10);
-    const onlinePrice = Math.round(dpPrice * 0.9);
-    const retailPrice = offlinePrice + 100;
-    const mspPrice = Math.round(base);
 
     document.getElementById("offlinePrice").textContent = offlinePrice;
     document.getElementById("onlinePrice").textContent = onlinePrice;
