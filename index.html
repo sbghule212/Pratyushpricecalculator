@@ -100,7 +100,7 @@ border: 3px solid var(--card-bg);
 
     .output p {
       font-size: 18px;
-      margin: 12px 0;
+/*       margin: 12px 0; */
     }
 
     .output span {
@@ -141,10 +141,10 @@ border: 3px solid var(--card-bg);
   <input type="number" id="dpPrice" placeholder="Enter DP price" oninput="calculateForward()" />
   <div class="output">
     <p><strong>Offline Price:</strong> <span id="offlinePrice">-</span></p>
-    <p><strong>Online Price:</strong> <span id="onlinePrice">-</span></p>
-    <p>(Online Price = Dp Price - 10%)</p>
+    <p style="margin-block-end: 0"><strong>Online Price:</strong> <span id="onlinePrice">-</span></p>
+    <p style="margin: 0">(Online Price = Dp Price - 10%)</p>
     <p><strong>MRP:</strong> <span id="retailPrice">-</span></p>
-    <p><strong>MSP:</strong> <span id="mspPrice">-</span></p>
+<!--     <p><strong>MSP:</strong> <span id="mspPrice">-</span></p> -->
   </div>
 </div>
 
