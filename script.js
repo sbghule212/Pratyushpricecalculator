@@ -91,7 +91,7 @@ function generateMessage() {
   const reportMsg = `*${store.toUpperCase()}🏪*\n\n${dateStr} ⏰\n\n1. Saree Sale - ${sareeSale}/-\n2. Jwellery,Purse Sale - ${otherSale}/-\n\nTotal Sale = ${totalSale}/-\n\nToday Expenses = ${expenses}/-\nToday 10% Profit = ${profit}/-`;
 
   document.getElementById("messageOutput1").value = distributorMsg;
-  document.getElementById("messageOutput2").value = customerMsg;
+ // document.getElementById("messageOutput2").value = customerMsg;
   document.getElementById("messageOutput3").value = reportMsg;
 }
 
