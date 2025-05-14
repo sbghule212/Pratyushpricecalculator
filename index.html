@@ -20,21 +20,20 @@
     </div>
 
     <!-- Forward Calculator -->
-    <div id="forward" class="tab-content active">
+   <div id="forward" class="tab-content active">
       <label for="dpPrice">Enter Dp Price:</label>
       <input
         type="number"
         id="dpPrice"
         placeholder="Enter DP price"
-        oninput="calculateForward()"
-      />
+        oninput="calculateForward()" />
       <div class="output">
         <p><strong>Offline Price:</strong> <span id="offlinePrice">-</span></p>
         <p style="margin-block-end: 0">
           <strong>Online Price:</strong> <span id="onlinePrice">-</span>
         </p>
         <p><strong>MRP:</strong> <span id="retailPrice">-</span></p>
-        <!--     <p><strong>MSP:</strong> <span id="mspPrice">-</span></p> -->
+        <p><strong>20% Discount:</strong> <span id="twentypPrice">-</span>, <span id="twentyPrice">-</span></p>
       </div>
     </div>
 
