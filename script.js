@@ -88,7 +88,7 @@ function generateMessage() {
 
   // const store = document.getElementById("storeInput").value || 0;
 
-  const reportMsg = `*${store.toUpperCase()}🏪*\n\n${dateStr} ⏰\n\n1. Saree Sale - ${sareeSale}/-\n2. Jwellery,Purse Sale - ${otherSale}/-\n\n*Total Sale = ${totalSale}/-*\n\n*THANK YOU SO MUCH*`;
+  const reportMsg = `*${store.toUpperCase()}🏪*\n\n${dateStr} ⏰\n\n1. Saree Sale - ${sareeSale}/-\n2. Jwellery,Purse Sale - ${otherSale}/-\n\n*Total Sale = ${totalSale}/-*\n\n*THANK YOU SO MUCH🥰🙏*`;
 
   document.getElementById("messageOutput1").value = distributorMsg;
  // document.getElementById("messageOutput2").value = customerMsg;
