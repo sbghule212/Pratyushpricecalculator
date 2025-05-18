@@ -34,17 +34,14 @@ function calculateForward() {
 function calculateReverse() {
   const onlinePrice = parseFloat(document.getElementById("onlineInput").value);
   if (isNaN(onlinePrice)) {
-    document.getElementById("revRetail").textContent = "-";
     document.getElementById("revDpPrice").textContent = "-";
     return;
   }
 
   //  const base = approxDpPrice * 0.75;
   const oofflinePrice = onlinePrice - 60;
-  const approxRetail = Math.round(oofflinePrice / 0.825);
   const approxDpPrice = Math.round(onlinePrice / 0.9);
 
-  document.getElementById("revRetail").textContent = approxRetail;
   document.getElementById("revDpPrice").textContent = approxDpPrice;
 }
 
