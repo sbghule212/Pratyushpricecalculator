@@ -2,10 +2,15 @@
   --primary-color: #4caf50;
   --bg-color: #f0f0f0;
   --card-bg: #ffffff;
-  --main-bg: hsl(217, 54%, 11%);
-  --card-bg: hsl(216, 50%, 16%);
-  --White: hsl(0, 0%, 100%);
+  --main-bg: hsl(216, 12%, 8%);
+  --card-bg: hsl(213, 19%, 18%);
+/*   --White: hsl(0, 0%, 100%); */
   box-sizing: border-box;
+  --Orange-500: hsl(25, 97%, 53%);
+--White: hsl(0, 100%, 100%);
+--Grey-500: hsl(217, 12%, 63%);
+--Grey-900: hsl(213, 19%, 18%);
+--Grey-950: hsl(216, 12%, 8%);
 }
 
 body {
